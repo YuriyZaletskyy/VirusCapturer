@@ -33,6 +33,9 @@
             // 
             // txtLog
             // 
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLog.Location = new System.Drawing.Point(26, 12);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
@@ -49,6 +52,7 @@
             this.Name = "Form1";
             this.Text = "Some captives";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

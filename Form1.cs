@@ -15,6 +15,9 @@ namespace VirusKiller
     public partial class Form1 : Form
     {
         private FileSystemWatcher watcher = null;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+           
+
         public Form1()
         {
             InitializeComponent();
@@ -66,6 +69,16 @@ namespace VirusKiller
 
             filesToDelete.Add("2.exe");
             filesToDelete.Add("s2.exe");
+            this.notifyIcon1 = new NotifyIcon();
+
+            this.notifyIcon1.Icon = new System.Drawing.Icon("Icon1.ico");
+            notifyIcon1.MouseDoubleClick += notifyIcon1_MouseDoubleClick;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void Watcher_Created(object sender, FileSystemEventArgs e)
@@ -118,6 +131,22 @@ namespace VirusKiller
                 return false;
             }
         }
-        
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            notifyIcon1.BalloonTipTitle = "Minimize to Tray App";
+            notifyIcon1.BalloonTipText = "You have successfully minimized your form.";
+
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                notifyIcon1.Visible = true;
+                notifyIcon1.ShowBalloonTip(500);
+                this.Hide();
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                notifyIcon1.Visible = false;
+            }
+        }
     }
 }
